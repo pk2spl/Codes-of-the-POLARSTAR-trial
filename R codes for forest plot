@@ -1,0 +1,11 @@
+library(forestploter)
+plot_AC <- read.csv("C://Users//44794//Desktop//Polar大分析//new analysis//subgroup analysis//AC//ready-20240219.csv",check.names = F)
+plot_AC[,c(8)][is.na(plot_AC[,c(8)])] <- " "
+plot_AC$` ` <- paste(rep(" ", nrow(plot_AC)), collapse = " ")
+pac <- forest(data = plot_AC[,c(1,3,2,9,7,8)], lower = plot_AC$conf.low, upper = plot_AC$conf.high, est = plot_AC$estimate, ci_column = 4, sizes = 0.6, ref_line = 1, x_trans = c("log10"), arrow_lab = c("Control better", "Concurrent plan better"), xlim = c(0.1,10), ticks_at = c(0.1, 1, 10))
+print(pac)
+plot_BC <- read.csv("C://Users//44794//Desktop//Polar大分析//new analysis//subgroup analysis//BC//ready-20240219.csv",check.names = F)
+plot_BC[,c(8)][is.na(plot_BC[,c(8)])] <- " "
+plot_BC$` ` <- paste(rep(" ", nrow(plot_BC)), collapse = " ")
+pbc <- forest(data = plot_BC[,c(1,3,2,9,7,8)], lower = plot_BC$conf.low, upper = plot_BC$conf.high, est = plot_BC$estimate, ci_column = 4, sizes = 0.6, ref_line = 1, x_trans = c("log10"), arrow_lab = c("Control", "Sequential plan better"), xlim = c(0.1, 10), ticks_at = c(0.1, 1, 10))
+print(pbc)
